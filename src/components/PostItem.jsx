@@ -8,41 +8,38 @@ import MyInput from "./UI/input/MyInput";
 
 const PostItem = (props) => {
     const [edModal, setEdModal] = useState(false);
-    const [selectedPost, setSelectedPost] = useState({});
-    const handleSelectPost = (edPost) => {
-        // console.log(edPost)
-        setSelectedPost(edPost);
-    };
-
-
 
     const [valueTitle, setValueTitle] = useState(props.post.title);
     const [valueTitleState, setValueTitleState] = useState(valueTitle);
+
+    const [valueBody, setValueBody] = useState(props.post.body);
+    const [valueBodyState, setValueBodyState] = useState(valueBody);
+
     return (
         <div className="post">
             <div className="post_content">
                 <strong>{props.number}. {valueTitleState}</strong>
                 <div>
-                    {props.post.body}
+                    {valueBodyState}
                 </div>
             </div>
             <div className="post_btns">
-                <MyButton onClick={() => {
-                    setEdModal(true);
-                    handleSelectPost(props)
-                }}>
+                <MyButton onClick={() =>
+                    setEdModal(true)}
+                >
                     Редактировать
                 </MyButton>
                 <EditModal visible={edModal} setVisible={setEdModal}  >
                     <form>
                         <MyInput value={valueTitle} onChange={(e) => {setValueTitle(e.target.value)}}
                         />
-                        <MyInput
+                        <MyInput value={valueBody} onChange={(e) => {setValueBody(e.target.value)}}
                         />
                         <MyButton
                             onClick={(e) => {
                                 e.preventDefault();
-                                setValueTitleState(valueTitle)
+                                setValueTitleState(valueTitle);
+                                setValueBodyState(valueBody)
 
                             }}
                         >Сохранить изменения</MyButton>
