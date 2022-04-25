@@ -1,4 +1,4 @@
-import React, {useRef, useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import Counter from "./components/Counter";
 import ClassCounter from "./components/ClassCounter";
 import './styles/App.css';
@@ -9,25 +9,31 @@ import MyInput from "./components/UI/input/MyInput";
 import PostForm from "./components/PostForm";
 import MySelect from "./components/UI/select/MySelect";
 import MyModal from "./components/UI/MyModal/MyModal";
+import axios from "axios";
+import PostService from "./API/PostService";
 
 function App() {
     const [posts, setPosts] = useState([
-        {id: 1, title: 'Javascript', body: 'Description'},
-        {id: 2, title: 'Javascript 2', body: 'Description'},
-        {id: 3, title: 'Javascript 3', body: 'Description'}
+        {id: 1, title: "first notice", body: "This is first notice"}
     ])
-
-    // console.log(posts)
-
     const [modal, setModal] = useState(false);
+    const [isPostLoading, setIsPostLoading] = useState(false);
 
-    const selectedPost = (post) => {
+    // useEffect(() =>{
+    //     fetchPosts()
+    // },[])
 
-    }
 
     const createPost = (newPost) => {
         setPosts([...posts, newPost])
         setModal(false)
+    }
+
+    async function fetchPosts() {
+        setIsPostLoading(true);
+        const posts = await PostService.getALL();
+        setPosts(posts)
+        setIsPostLoading(false);
     }
 
     const removePost = (post) => {
@@ -36,6 +42,7 @@ function App() {
 
     return (
         <div className="App">
+            <button onClick={fetchPosts}>Get Posts</button>
             <MyButton style={{marginTop: 30}} onClick={() => setModal(true)}>
                 Добавить заметку
             </MyButton>
