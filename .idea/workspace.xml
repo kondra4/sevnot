@@ -2,11 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2e919542-3c05-4502-8246-66561105e5a4" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/API/PostService.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/PostForm.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/PostForm.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/PostFormEdit.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/PostFormEdit.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/PostItem.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/PostItem.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/PostList.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/PostList.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

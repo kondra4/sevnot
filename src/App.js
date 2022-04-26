@@ -11,39 +11,62 @@ import MySelect from "./components/UI/select/MySelect";
 import MyModal from "./components/UI/MyModal/MyModal";
 import axios from "axios";
 import PostService from "./API/PostService";
+import {parse} from "url";
+
+// let savePosts;
 
 function App() {
-    const [posts, setPosts] = useState([
-        {id: 1, title: "first notice", body: "This is first notice"}
-    ])
+    const savePostsers = JSON.parse(localStorage.getItem('save_posts'))
+    // console.log(savePostsers)
+
+    const check = savePostsers.length == 0 ? [{title: "2", body: "1", id:324}] : savePostsers
+
+    console.log(check)
+    const [posts, setPosts] = useState(check)
+    // const savePosts = localStorage.getItem('save_posts')
+    // console.log(savePosts)
+
+
+
+
+
+    // const [posts, setPosts] = useState(savePostsers)
+
+
     const [modal, setModal] = useState(false);
-    const [isPostLoading, setIsPostLoading] = useState(false);
 
-    // useEffect(() =>{
-    //     fetchPosts()
-    // },[])
-
+    // console.log(localStorage.getItem('save_posts'))
 
     const createPost = (newPost) => {
         setPosts([...posts, newPost])
         setModal(false)
     }
 
-    async function fetchPosts() {
-        setIsPostLoading(true);
-        const posts = await PostService.getALL();
-        setPosts(posts)
-        setIsPostLoading(false);
-    }
+    localStorage.setItem('save_posts', JSON.stringify(posts))
+
+    // const savePostsers = JSON.parse(localStorage.getItem('save_posts'))
+    // setPosts(savePostsers)
+    //     console.log(savePostsers)
+
+    // useEffect(() =>{
+    //
+    //     localStorage.setItem('save_posts', JSON.stringify(posts))
+    //     // savePosts = localStorage.getItem('save_posts')
+    //     // console.log(savePosts)
+    // },[posts])
+
+    const savePosts = JSON.parse(localStorage.getItem('save_posts'))
 
     const removePost = (post) => {
         setPosts(posts.filter(p => p.id !== post.id))
     }
-
+    // console.log(posts)
     return (
         <div className="App">
-            <button onClick={fetchPosts}>Get Posts</button>
-            <MyButton style={{marginTop: 30}} onClick={() => setModal(true)}>
+            {/*<button onClick={fetchPosts}>Сохранить заметки</button>*/}
+            <MyButton style={{marginTop: 30}}
+                      onClick={ () => setModal(true)
+                      }>
                 Добавить заметку
             </MyButton>
             <MyModal visible={modal} setVisible={setModal}>
@@ -51,7 +74,10 @@ function App() {
             </MyModal>
             <hr style={{margin: '15px 0'}}/>
             {posts.length !== 0
-                ? <PostList remove={removePost} posts={posts} title="Заметки"/>
+                ? <PostList remove={removePost}
+                            title="Заметки"
+                            save={posts}
+                />
                 :
                 <h1 style={{textAlign: 'center'}}>
                     No notes

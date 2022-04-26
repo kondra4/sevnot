@@ -1,9 +1,10 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import MyInput from "./UI/input/MyInput";
 import MyButton from "./UI/button/MyButton";
 
 const PostForm = ({create}) => {
     const [post, setPost] = useState({title: '', body: ''});
+
 
     const addNewPost = (e) => {
         e.preventDefault();
@@ -27,7 +28,7 @@ const PostForm = ({create}) => {
                 type="text"
                 placeholder="Описание заметки"
             />
-            <MyButton onClick={addNewPost}>Создать пост</MyButton>
+            <MyButton onClick={addNewPost}>Добавить заметку</MyButton>
         </form>
     );
 };

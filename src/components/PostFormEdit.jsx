@@ -12,7 +12,6 @@ const PostForm = ({props}, {selectedPost}, changeStateInput) => {
             <MyInput value={valueTitle} onChange={(e) => {setValueTitle(e.target.value)}}
             />
             <MyInput
-                // value={props.body}
             />
             <MyButton>Сохранить изменения</MyButton>
         </form>
