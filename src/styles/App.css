@@ -20,4 +20,19 @@
     margin-top: 15px;
     justify-content: space-between;
     align-items: center;
+    border-radius: 15px;
+}
+.post-enter {
+    opacity: 0;
+}
+.post-enter-active {
+    opacity: 1;
+    transition: opacity 300ms ease-in;
+}
+.post-exit {
+    opacity: 1;
+}
+.post-exit-active {
+    opacity: 0;
+    transition: opacity 300ms ease-in;
 }
