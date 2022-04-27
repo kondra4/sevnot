@@ -1,30 +1,19 @@
-import React, {useEffect, useState} from 'react';
+import React, {} from 'react';
 import PostItem from "./PostItem";
 
 
-const PostList = ({ title, remove, save}) => {
+const PostList = ({ title, remove, save, onEditPost}) => {
 
+const onChangePost =(title, body, id) => {
+    onEditPost(title, body, id)
+    }
 
-
-
-    // useEffect(() =>{
-    //     localStorage.setItem('save_posts', JSON.stringify(posts))
-    // },[posts])
-    //
-    // const save = JSON.parse(localStorage.getItem('save_posts'));
-    // console.log(save)
     return (
         <div>
             <h1 style = {{textAlign: 'center'}}>
                 {title}</h1>
-            {/*{save !== 1*/}
-            {/*    ?*/}
-            {/*save.map((post, index) =>*/}
-            {/*    <PostItem remove={remove} number={index + 1} post={post} key={post.id}/>*/}
-            {/*)*/}
-            {/*    :*/}
             {save.map((post, index) =>
-                        <PostItem remove={remove} number={index + 1} post={post} key={post.id}/>
+                        <PostItem remove={remove} number={index + 1} post={post} key={post.id} onChangePost={onChangePost}/>
                     )
             }
         </div>

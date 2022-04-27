@@ -1,8 +1,6 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import MyButton from "./UI/button/MyButton";
 import EditModal from "./UI/MyModal/EditModal";
-import PostForm from "./PostForm";
-import PostFormEdit from "./PostFormEdit";
 import MyInput from "./UI/input/MyInput";
 
 
@@ -15,12 +13,6 @@ const PostItem = (props) => {
     const [valueBody, setValueBody] = useState(props.post.body);
     const [valueBodyState, setValueBodyState] = useState(valueBody);
 
-    // useEffect(() =>{
-    //     localStorage.setItem('save_posts', JSON.stringify(props.post))
-    // },[props])
-    //
-    // const savePosts = JSON.parse(localStorage.getItem('save_posts'))
-
     return (
         <div className="post">
             <div className="post_content">
@@ -30,7 +22,9 @@ const PostItem = (props) => {
                 </div>
             </div>
             <div className="post_btns">
-                <MyButton onClick={() => setEdModal(true)}>
+                <MyButton onClick={(e) => {
+                    setEdModal(true);
+                }}>
                     Редактировать
                 </MyButton>
                 <EditModal visible={edModal} setVisible={setEdModal}  >
@@ -42,11 +36,12 @@ const PostItem = (props) => {
                         <MyButton
                             onClick={(e) => {
                                 e.preventDefault();
+                                props.onChangePost(valueTitle, valueBody, props.post.id)
                                 setValueTitleState(valueTitle);
                                 setValueBodyState(valueBody)
                                 props.post.title = valueTitle
                                 props.post.body = valueBody
-                                // console.log(props.post)
+                                setEdModal(false)
                             }}
                         >Сохранить изменения</MyButton>
                     </form>
